@@ -25,7 +25,7 @@ public class Sumador {
 		int numero2 = Integer.valueOf(args[1]);
 		
 		int suma = sumar(numero1, numero2);
-		System.out.println("El resultado de la suma de los numeros "+ numero1 + " y "+ numero2 + " es: " + suma);
+		System.out.println("Soy el proceso hijo: El resultado de la suma de los numeros "+ numero1 + " y "+ numero2 + " es: " + suma);
 		
 	}
 

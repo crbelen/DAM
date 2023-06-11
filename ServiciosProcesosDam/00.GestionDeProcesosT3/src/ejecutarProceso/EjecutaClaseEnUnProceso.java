@@ -5,6 +5,7 @@ package ejecutarProceso;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.Scanner;
 
 /**
@@ -30,7 +31,7 @@ public class EjecutaClaseEnUnProceso {
 			{
 				int estado_ejecucion = ejecutarClaseProceso(Sumador.class, numero1, numero2);
 				if (estado_ejecucion == 0) {
-				System.out.println("Proceso ejecutado correctamente.");
+				System.out.println("Soy el proceso padre: Proceso ejecutado correctamente.");
 				}
 				else {
 				System.out.println("Error ejecutando el proceso.");
@@ -75,6 +76,13 @@ public class EjecutaClaseEnUnProceso {
 		//Los dos ultimos parametros son los parametros del metodo main de la clase
 		ProcessBuilder builder = new ProcessBuilder(javaBin, "-cp", classpath, className, 
 				String.valueOf(n1), String.valueOf(n2));
+		
+		//Indico cual va a ser el fichero de errores de salida del proceso
+		builder.redirectError(Redirect.INHERIT);//salida por defecto
+		//Indico cual va a ser el fichero de salida del proceso
+		builder.redirectOutput(Redirect.INHERIT);//salida por defecto
+		
+		
 		Process process = builder.start();
 		//Espero a que se ejecute el proceso
 		process.waitFor();
